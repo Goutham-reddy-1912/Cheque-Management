@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Resend page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <section class="login_page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-5 p-0">
+                    <div class="right_side">
+                        <div class="card">
+                            <h1><span class="cheque_col">Streamlined <br>digital interface <br>for efficient <br></span>
+                                cheque <br> management.</h1>
+                            <p>Track, manage, secure; streamline cheque transactions effortlessly with our intuitive
+                                dashboard solution.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div></div>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="comny_logo">
+                        <a href="index.html"> <img src="./assets/img/logo_img.png" alt=""></a>
+                    </div>
+                    <div class="wel_msg">
+                        <div class="wel_gif">
+                            <i class="fa fa-arrow-left reset_page_back" aria-hidden="true"></i>
+                            <h3>Reset Password </h3>
+                            <img class="gif_img_bye" src="./assets/img/monkey.gif" alt="">
+                        </div>
+                        <p>Enter Email address to verify your account.</p>
+                    </div>
+                    <div class="login_form">
+                        <form id="request-otp" action="#">
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" name="email_address" id="ID" placeholder="example@xyz.com"
+                                    class="form-control">
+                                <a href="request_page.html" class="request_otp">Resend OTP</a>
+                            </div>
+                            <p class="otp_text">OTP</p>
+                            <div class="timer_otp">
+                                <div class="otp_req">
+                                    <input type="text" class="otp-input" name="otp1" maxlength="1" required>
+                                    <input type="text" class="otp-input" name="otp2" maxlength="1" required>
+                                    <input type="text" class="otp-input" name="otp3" maxlength="1" required>
+                                    <input type="text" class="otp-input" name="otp4" maxlength="1" required>
+                                    <input type="text" class="otp-input" name="otp5" maxlength="1" required>
+                                    <input type="text" class="otp-input" name="otp6" maxlength="1" required>
+                                </div>
+                                <div class="timer">
+                                    <span class="minutes">04</span>:<span class="seconds">30</span>
+                                </div>
+                            </div>
+                            <div class="w-100">
+                                <label id="otp1-error" class="text-red text-capitalize text-normal w-100" for="otp1"
+                                    style="display: none;"></label>
+                                <label id="otp2-error" class="text-red text-capitalize text-normal w-100" for="otp2"
+                                    style="display: none;"></label>
+                                <label id="otp3-error" class="text-red text-capitalize text-normal w-100" for="otp3"
+                                    style="display: none;"></label>
+                                <label id="otp4-error" class="text-red text-capitalize text-normal w-100" for="otp4"
+                                    style="display: none;"></label>
+                                <label id="otp5-error" class="text-red text-capitalize text-normal w-100" for="otp5"
+                                    style="display: none;"></label>
+                                <label id="otp6-error" class="text-red text-capitalize text-normal w-100" for="otp6"
+                                    style="display: none;"></label>
+                            </div>
+                            <input type="submit" name="Login" id="login" value="Verify">
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./assets/js/jquery.style.js"></script>
+    <script src="./assets/js/jquery.validate.js"></script>
+    <script>
+        (function ($) {
+            $.fn.timer = function (callback) {
+                callback = callback || function () {};
+                return this.each(function () {
+                    var $timer = $(this),
+                        $minutesEl = $timer.find('.minutes'),
+                        $secondsEl = $timer.find('.seconds'),
+                        interval = 1000,
+                        timer = null,
+                        start = 30,
+                        minutesText = $minutesEl.text(),
+                        minutes = (minutesText[0] == '0') ? minutesText[1] : minutesText[0],
+                        m = Number(minutes);
+
+                    timer = setInterval(function () {
+                        start--;
+                        if (start == 0) {
+                            start = 60;
+
+                            $secondsEl.text('00');
+
+                            m--;
+
+                            if (m == 0) {
+                                clearInterval(timer);
+                                $minutesEl.text('00');
+                                callback();
+
+                            }
+                        } else {
+
+                            if (start >= 10) {
+
+                                $secondsEl.text(start.toString());
+
+                            } else {
+
+                                $secondsEl.text('0' + start.toString());
+
+
+                            }
+                            if (minutes.length == 2) {
+                                $minutesEl.text(m.toString());
+                            } else {
+                                if (m == 1) {
+                                    $minutesEl.text('00');
+                                } else {
+                                    $minutesEl.text('0' + m.toString());
+                                }
+                            }
+
+                        }
+
+                    }, interval);
+
+                });
+
+            };
+
+            $(function () {
+                $('.timer').timer(function () {
+                    document.getElementById('timer-beep').play();
+                });
+
+            });
+
+        })(jQuery);
+    </script>
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $("#request-otp").validate({
+                // Specify the validation rules
+                rules: {
+                    email_address: {
+                        required: true,
+                        email: true,
+                        minlength: 3,
+                        maxlength: 50,
+                    },
+                    otp1: {
+                        required: true,
+                        digits: true,
+                        maxlength: 1
+                    },
+                    otp2: {
+                        required: true,
+                        digits: true,
+                        maxlength: 1
+                    },
+                    otp3: {
+                        required: true,
+                        digits: true,
+                        maxlength: 1
+                    },
+                    otp4: {
+                        required: true,
+                        digits: true,
+                        maxlength: 1
+                    },
+                    otp5: {
+                        required: true,
+                        digits: true,
+                        maxlength: 1
+                    },
+                    otp6: {
+                        required: true,
+                        digits: true,
+                        maxlength: 1
+                    }
+                },
+                // Specify the validation error messages
+                messages: {
+                    email_address: {
+                        required: "Please enter your email address",
+                        email: "Please enter a valid email address",
+                        maxlength: "Please enter no more than 50 characters"
+                    },
+                    otp1: "Enter a first digit",
+                    otp2: "Enter a second digit",
+                    otp3: "Enter a third digit",
+                    otp4: "Enter a foruth digit",
+                    otp5: "Enter a fifth digit",
+                    otp6: "Enter a sixth digit"
+                },
+            });
+        });
+    </script>
+</body>
+
+</html>
